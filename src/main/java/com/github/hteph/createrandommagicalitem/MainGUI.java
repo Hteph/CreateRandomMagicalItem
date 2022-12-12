@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class HelloApplication extends Application {
+public class MainGUI extends Application {
     
     @Override
     public void start(Stage primaryStage) {

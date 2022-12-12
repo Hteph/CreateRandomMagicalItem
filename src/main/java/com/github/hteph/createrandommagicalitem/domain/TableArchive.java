@@ -1,4 +1,4 @@
-package com.github.hteph.domain;
+package com.github.hteph.createrandommagicalitem.domain;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.github.hteph.domain;
+package com.github.hteph.createrandommagicalitem.domain;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.TreeSet;
  */
 public class Table {
 
-    private Map<Integer,TableLine> tableLines;
+    private Map<Integer, TableLine> tableLines;
     private String name;
     private String description;
 

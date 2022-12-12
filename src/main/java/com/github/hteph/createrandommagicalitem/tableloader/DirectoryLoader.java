@@ -1,8 +1,8 @@
-package com.github.hteph.tableloader;
+package com.github.hteph.createrandommagicalitem.tableloader;
 
-import com.github.hteph.domain.Table;
-import com.github.hteph.domain.TableArchive;
-import com.github.hteph.domain.TableLine;
+import com.github.hteph.createrandommagicalitem.domain.Table;
+import com.github.hteph.createrandommagicalitem.domain.TableArchive;
+import com.github.hteph.createrandommagicalitem.domain.TableLine;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
