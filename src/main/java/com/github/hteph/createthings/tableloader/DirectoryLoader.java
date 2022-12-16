@@ -1,8 +1,8 @@
-package com.github.hteph.tableloader;
+package com.github.hteph.createthings.tableloader;
 
-import com.github.hteph.domain.Table;
-import com.github.hteph.domain.TableArchive;
-import com.github.hteph.domain.TableLine;
+import com.github.hteph.createthings.domain.Table;
+import com.github.hteph.createthings.domain.TableArchive;
+import com.github.hteph.createthings.domain.TableLine;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -40,11 +40,14 @@ public class DirectoryLoader {
 
         for(String line:fileLinesList){
             if(line.startsWith("#")){
-                if(table != null) TableArchive.addToArchive(table);
-                table = new Table(line.substring(line.indexOf("#")+1,line.indexOf(":")).trim(),line.substring(line.indexOf(":")+1).trim() );
+                if(table != null) {
+                    TableArchive.addToArchive(table);
+                }
+                table = new Table(line.substring(line.indexOf("#")+1,line.indexOf(":")).trim(),
+                                  line.substring(line.indexOf(":")+1).trim() );
             }else if(table != null && line.indexOf(" ")>0 &&line.substring(0,line.indexOf(" ")).chars().allMatch( Character::isDigit )){
                 table.addTableLine(TableLine.builder()
-                                            .withNumber(Integer.valueOf(line.substring(0, line.indexOf(" "))))
+                                            .withNumber(Integer.parseInt(line.substring(0, line.indexOf(" "))))
                                             .withDescription(line.substring(line.indexOf(" ")))
                                             .build());
             }

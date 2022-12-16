@@ -1,7 +1,8 @@
-package com.github.hteph.domain;
+package com.github.hteph.createthings.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeSet;
 
 /**
@@ -9,16 +10,18 @@ import java.util.TreeSet;
  */
 public class Table {
 
-    private Map<Integer,TableLine> tableLines;
-    private String name;
-    private String description;
+    private final Map<Integer,TableLine> tableLines;
+    private final String name;
+    private final String description;
+    
+    Random random = new Random();
 
     public Table(String name, String description) {
 
         this.name = name;
         this.description = description;
 
-        tableLines = new HashMap<Integer, TableLine>();
+        tableLines = new HashMap<>();
     }
 
     public String getTableLine(Integer number) {
@@ -29,20 +32,23 @@ public class Table {
             tableLine = tableLines.get(number);
             if(tableLine !=null) found = true;
             if(number>0) number--;
-            else return getFirst().getDescription();
-        }while (found);
+            else {
+                tableLine = getFirst();
+                found = true;
+            }
+        }while (!found);
 
-        return description+" "+tableLine.getDescription();
+        return description+" "+ (tableLine != null ? tableLine.getDescription() : "");
     }
 
-    public String getRandomLine() {
+    public String getDescriptiveLine() {
 
-        return getDescription()+" "+getLine().getDescription();
+        return getDescription()+" "+ getRandomLine().getDescription();
     }
 
     private TableLine getFirst() {
 
-        TreeSet<Integer> keyList =new TreeSet<>(tableLines.keySet());
+        TreeSet<Integer> keyList = new TreeSet<>(tableLines.keySet());
 
         return tableLines.get(keyList.first());
 
@@ -64,22 +70,26 @@ public class Table {
 
     public String getRandomLineWithoutHeader() {
 
-        return getLine().getDescription();
+        return getRandomLine().getDescription();
     }
 
-    private TableLine getLine() {
+    private TableLine getRandomLine() {
+        
         TableLine tableLine;
         boolean found = false;
         TreeSet<Integer> keyList = new TreeSet<>(tableLines.keySet());
-        Integer number = (int) (keyList.size() * Math.random());
+        int number = random.nextInt(keyList.size());
 
         do {
             tableLine = tableLines.get(number);
             if (tableLine != null) found = true;
             if (number > 0) number--;
-            else return getFirst();
+            else {
+                tableLine = getFirst();
+                found = true;
+            }
         } while (!found);
-
+        
         return tableLine;
     }
 }

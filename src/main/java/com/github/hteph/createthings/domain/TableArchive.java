@@ -1,13 +1,16 @@
-package com.github.hteph.domain;
+package com.github.hteph.createthings.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-/**
- * @author Mikael Hansson {@literal <mailto:mikael.hansson@so4it.com/>}
- */
+
 public class TableArchive {
 
-    private static Map<String, Table> archive;
+    private static final Map<String, Table> archive;
 
     static {
       archive = new HashMap<>();
